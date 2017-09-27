@@ -13,10 +13,6 @@ public class ServerMovementController : ServerBehaviour<MovementControllerConnec
   }
 
   protected virtual void Update() {
-    if (!ConnectionBehaviour.isServer) {
-      return;
-    }
-
     Vector2 moveVector = (target - (Vector2)transform.position).normalized * speed * Time.deltaTime;
 
     if (Vector2.Distance(target, transform.position) < moveVector.magnitude) {

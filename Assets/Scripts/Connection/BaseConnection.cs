@@ -12,4 +12,26 @@ public class BaseConnection : NetworkBehaviour {
       OnLocalPlayerStarted();
     }
   }
+
+  public delegate void StartClientDelegate();
+  public event StartClientDelegate OnClientStarted;
+
+  public override void OnStartClient() {
+    base.OnStartClient();
+
+    if (OnClientStarted != null) {
+      OnClientStarted();
+    }
+  }
+
+  public delegate void StartServerDelegate();
+  public event StartServerDelegate OnServerStarted;
+
+  public override void OnStartServer() {
+    base.OnStartServer();
+
+    if (OnServerStarted != null) {
+      OnServerStarted();
+    }
+  }
 }

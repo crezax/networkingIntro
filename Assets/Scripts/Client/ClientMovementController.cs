@@ -7,7 +7,8 @@ public class ClientMovementController : ClientBehaviour<MovementControllerConnec
   }
 
   protected virtual void Update() {
-    if (!ConnectionBehaviour.isClient || !ConnectionBehaviour.hasAuthority) {
+    if (!ConnectionBehaviour.hasAuthority) {
+      // Check if object has authority - in this case, is a local player
       return;
     }
 

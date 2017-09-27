@@ -18,6 +18,12 @@ public abstract class ClientBehaviour<T> : MonoBehaviour where T : BaseConnectio
       throw new Exception(this + " is missing a script of type " + typeof(T));
     }
     ConnectionBehaviour.OnLocalPlayerStarted += OnStartLocalPlayer;
+    enabled = false;
+    ConnectionBehaviour.OnClientStarted += ConnectionBehaviour_OnClientStarted;
+  }
+
+  private void ConnectionBehaviour_OnClientStarted() {
+    enabled = true;
   }
 
   protected virtual void OnStartLocalPlayer() { }

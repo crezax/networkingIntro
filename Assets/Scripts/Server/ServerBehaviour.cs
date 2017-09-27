@@ -17,5 +17,11 @@ public abstract class ServerBehaviour<T> : MonoBehaviour where T : BaseConnectio
     if (ConnectionBehaviour == null) {
       throw new Exception(this + " is missing a script of type " + typeof(T));
     }
+    enabled = false;
+    ConnectionBehaviour.OnServerStarted += ConnectionBehaviour_OnServerStarted;
+  }
+
+  private void ConnectionBehaviour_OnServerStarted() {
+    enabled = true;
   }
 }
